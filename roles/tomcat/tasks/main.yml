@@ -41,6 +41,9 @@
     name: firewalld
     state: latest
 
+- name: Start Firewalld
+  service: name=firewalld state=started enabled=yes
+
 - name: deploy iptables rules
   template: src=iptables-save dest=/etc/sysconfig/iptables
   when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6'"
